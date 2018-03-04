@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new IconButton(
-                icon: new Icon(Icons.favorite, color: Colors.redAccent),
+                icon: new Icon(Icons.favorite, color: Colors.blueAccent),
                 iconSize: 70.0,
                 onPressed: () {Navigator.of(context).pushNamed("/SecondPage");},
               ),
