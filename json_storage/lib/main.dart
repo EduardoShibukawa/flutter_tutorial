@@ -30,11 +30,11 @@ class HomeState extends State<Home> {
       dir = directory;
       jsonFile = new File(dir.path + "/" + fileName);
       fileExists = jsonFile.existsSync();
-      if (fileExists) this.setState(() 
-        => fileContent = JSON.decode(
+      if (fileExists) {
+        this.setState(() => fileContent = JSON.decode(
             jsonFile.readAsStringSync()
-          )
-      );
+        ));
+      }
     });    
   }
 
@@ -47,7 +47,7 @@ class HomeState extends State<Home> {
 
   void createFile(Map<String, String> content, Directory dir, String fileName) {
     print("Creating file!");
-    File file = new File(dir.path + "/'"  + fileName);
+    File file = new File(dir.path + "/"  + fileName);
     file.createSync();
     fileExists = true;
     file.writeAsStringSync(JSON.encode(content));    
