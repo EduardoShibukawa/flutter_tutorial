@@ -7,6 +7,8 @@ import '../UI/answer_button.dart';
 import '../UI/question_text.dart';
 import '../UI/correct_wrong_overlay.dart';
 
+import './score_page.dart';
+
 class QuizPage extends StatefulWidget {
 
   @override 
@@ -59,12 +61,22 @@ class QuizPageState extends State<QuizPage> {
         _overlayShouldBeVisible ? new CorrectWrongOverlay(
           _isCorrect,
           () {
-            _currentQuestion = _quiz.nextQuestion;
-            this.setState(() {
-              _overlayShouldBeVisible = false;
-              _questionText = _currentQuestion.question;
-              _questionNumber = _quiz.questionNumber;
-            });
+            if (_quiz.length == _questionNumber) {
+              Navigator.of(context).pushAndRemoveUntil(
+                new MaterialPageRoute(
+                  builder: (BuildContext context) => new ScorePage(_quiz.score, _quiz.length)
+                ),
+                (Route route) => route == null
+              );
+            }
+            else {
+              _currentQuestion = _quiz.nextQuestion;
+              this.setState(() {
+                _overlayShouldBeVisible = false;
+                _questionText = _currentQuestion.question;
+                _questionNumber = _quiz.questionNumber;
+              });
+            }
           }
         ) : new Container()
       ],      
